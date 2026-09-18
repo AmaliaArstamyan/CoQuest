@@ -1,32 +1,58 @@
-# React + TypeScript + Vite
+Here's a professional English product description you can use for your GitHub repository:
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+---
 
-Currently, two official plugins are available:
+# CoQuest
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**A real-time cooperative puzzle quest game for web and mobile.**
 
-## React Compiler
+CoQuest is a multiplayer interactive quest game where 2–4 players team up to solve puzzles, uncover clues, and progress through a branching story — all through real-time collaboration. Each player sees different information, so communication is the key to survival.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎮 About the Game
 
-## Expanding the Oxlint configuration
+CoQuest is built around **forced cooperation**. Players join a shared room but receive different pieces of information, different viewpoints, or different roles. To solve each puzzle, they must describe what they see, share clues, and work together — usually over voice chat.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+The game is inspired by cooperative puzzle experiences like *We Were Here*, *Escape Simulator*, and classic point-and-click quests, but designed from the ground up for **short, accessible sessions** on web and mobile.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## ✨ Key Features
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- **Real-time multiplayer** — 2 to 4 players per room
+- **Asymmetric information** — each player sees a different part of the puzzle
+- **Voice-chat friendly** — puzzles are designed to be solved through conversation
+- **Branching narrative** — choices affect the story and lead to multiple endings
+- **Cross-platform** — playable on web, Android, and iOS
+- **Short sessions** — each chapter takes 15–30 minutes
+- **No downloads required** — play instantly in the browser
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- React + Vite
+- TypeScript
+- Tailwind CSS
+- Zustand (state management)
+- Framer Motion (animations)
+- React Router
+
+**Backend / Realtime**
+- Supabase (Auth, Postgres, Realtime, Storage)
+
+**Mobile**
+- Capacitor (Android + iOS builds)
+
+## 📦 Project Status
+
+🚧 **Early development** — currently building the core room system and first playable chapter.
+
+## 🗺️ Roadmap
+
+- [x] Project setup (Vite + React + TS + Tailwind)
+- [ ] Main menu and room UI
+- [ ] Supabase integration (auth + realtime)
+- [ ] Room creation and joining
+- [ ] First playable puzzle
+- [ ] First full chapter
+- [ ] Android build (Capacitor)
+- [ ] iOS build (Capacitor)
+- [ ] Google Play release
+- [ ] App Store release
