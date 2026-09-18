@@ -10,6 +10,8 @@ import {
   checkSignal,
   type SignalState,
 } from "@/game/puzzles/signal";
+import VoicePanel from "@/components/VoicePanel";
+import { useVoice } from "@/stores/voiceStore";
 
 export default function GameRoom() {
   const { code } = useParams<{ code: string }>();
@@ -18,6 +20,7 @@ export default function GameRoom() {
   const { players, subscribe, setRoom } = useRoom();
   const [roomId, setRoomId] = useState<string | null>(null);
 
+  // Resolve room from code
   // Resolve room from code
   useEffect(() => {
     (async () => {
@@ -40,6 +43,25 @@ export default function GameRoom() {
       subscribe(room.id);
     })();
   }, [code, nav, setRoom, subscribe]);
+
+    // 🎙️ Voice — միանում ա GameRoom-ում
+  useEffect(() => {
+    if (!roomId || !user) return;
+
+    const voice = useVoice.getState();
+    if (voice.connected || voice.connecting) {
+      console.log("🎙️ Voice already connected, skipping");
+      return;
+    }
+
+    const username = (user.user_metadata as any)?.username ?? "Player";
+    console.log("🎙️ Connecting voice to room:", code);
+
+    voice
+      .connect(code!.toUpperCase(), user.id, username)
+      .then(() => console.log("✅ Voice connect success"))
+      .catch((err) => console.error("❌ Voice connect error:", err));
+  }, [roomId, user, code]);
 
   const { state, update, ready } = usePuzzleState<SignalState>(
     roomId,
@@ -89,7 +111,7 @@ export default function GameRoom() {
         </div>
       </header>
 
-      <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
         {state.solved ? (
           <SolvedView key="solved" />
         ) : role === "alpha" ? (
@@ -99,7 +121,11 @@ export default function GameRoom() {
         )}
       </AnimatePresence>
 
-      <footer className="mt-auto pt-6 text-xs text-gray-500 text-center">
+      <div className="mt-6">
+        <VoicePanel />
+      </div>
+
+      <footer className="mt-3 text-xs text-gray-500 text-center">
         Talk to your partner. Share what you see.
       </footer>
     </div>
