@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/stores/authStore";
 import { useRoom } from "@/stores/roomStore";
 
+
 const ROLES = ["alpha", "beta", "gamma", "delta"] as const;
 const ROLE_COLORS: Record<string, string> = {
   alpha: "text-accent",
@@ -30,7 +31,7 @@ export default function Lobby() {
     let active = true;
     let unsub: (() => void) | null = null;
 
-    (async () => {
+    const joinRoom = async () => {
       console.log("🔍 Lobby useEffect, code:", codeUC);
 
       const { data: room, error: roomErr } = await supabase
@@ -92,7 +93,9 @@ export default function Lobby() {
       });
 
       unsub = subscribe(room.id);
-    })();
+    };
+
+    joinRoom();
 
     return () => {
       active = false;
@@ -163,6 +166,7 @@ export default function Lobby() {
         </button>
       </motion.div>
 
+
       <div className="w-full bg-panel rounded-xl p-4 border border-white/10">
         <p className="text-sm text-gray-400 mb-3">
           Players ({players.length}/4)
@@ -199,6 +203,8 @@ export default function Lobby() {
                   {p.ready ? "Ready" : "Not ready"}
                 </span>
               </motion.div>
+
+              
             ))}
           </AnimatePresence>
           {players.length < 2 && (
