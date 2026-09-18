@@ -88,13 +88,16 @@ export default function MainMenu() {
         </button>
       </div>
     )}
-      <motion.h1
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent"
-      >
-        CoQuest
-      </motion.h1>
+      <motion.div
+  initial={{ y: -20, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  className="flex flex-col items-center gap-4"
+>
+  <img src="/logo.svg" alt="CoQuest" className="w-24 h-24" />
+  <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent">
+    CoQuest
+  </h1>
+</motion.div>
 
       <p className="text-gray-400 text-center max-w-md">
         A cooperative puzzle quest for 2–4 players. You each see a different
